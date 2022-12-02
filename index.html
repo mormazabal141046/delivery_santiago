@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Delivery Santiago es una empresa que apoya con el envío de encomiendas, retirando y entregando donde tu nos indiques. Servicio agil y seguro para toda la Region Metropolitana.">
+    <meta name="keywords" content="Delivery, Santiago, Encomienda, Encomiendas, Delivery Santiago, Envios">
+    <meta name="author" content="Mauricio Ormazabal M.">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="theme-color" content="#e91429">
+    <link rel="icon" type="image/png" href="img/favicon.png" />
+
+    <!-- Developer -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!-- Production -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
+   
+    <!-- Bootstrap VUE -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-vue/2.17.1/bootstrap-vue.min.js" integrity="sha512-3OPI9vjqM7qBWoob6r+LTpPI5SoWDGz0QadUGI9ZXGAZX3Nyy6bMO8FdDqxbau3m9r4uQow7m08ttROwbggbYA==" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-vue/2.17.1/bootstrap-vue.min.css" integrity="sha512-j0tbUxQhCImdCO6ZCntJhQIrzUYUwFPqKHCuHT8bRUBFDMUkVUpl4VT5gt+rR+UfEFXZxgpwPFiwBZ6U3GrZ5g==" crossorigin="anonymous" />
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <!-- Axios -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js" integrity="sha512-quHCp3WbBNkwLfYUMd+KwBAgpVukJu5MncuQaWXgCrfgcxCJAq/fo+oqrRKOj+UKEmyMCG3tb8RB63W+EmrOBg==" crossorigin="anonymous"></script>
+
+    <!-- Style Custom -->
+    <link rel="stylesheet" type="text/css" href="css/delivery_style.css">
+
+    <!-- Animate CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Kufam:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <!-- JQUERY -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script src="https://smtpjs.com/v3/smtp.js"></script> 
+
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/1.5.1/vue-resource.min.js" integrity="sha512-wGKmIfDWUJSUvxUfUayQPJj7ADCD60La3up0VCbq+MTFcOUQ2hlH2McnYFafHgLTsOrGwOdiHKX4p1v0BerCyQ==" crossorigin="anonymous"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.1"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.20/lodash.js"></script> -->
+    <title>Delivery Santiago</title>
+</head>
+<body>
+    <div id="mainApp" class="container-fluid p-0 m-0">
+        <div class="header">
+            <img class="d-none d-md-flex animate__animated animate__fadeInLeft" src="img/Logo_v3.png" alt="">
+            <img class="caja animate__animated animate__fadeInDown animate__delay-1s" src="img/Caja_sola.png" alt="">
+            <img class="smartp animate__animated animate__fadeInUp" src="img/Smartphone.png" alt="">
+            <h1 style="font-style: oblique;">
+                "<span style="font-weight: 600 !important; font-size: 1.1em;">PLANIFIQUEMOS</span> juntos <span style="font-weight: 600 !important; font-size: 1.1em;">TU</span> <span style="position: relative; top: -5px;">próxima entrega</span>"
+            </h1>
+        </div>
+        <div class="d-flex d-md-none menu-resp">
+            <a @click="openMenu()"><i class="fas fa-bars"></i></a>
+            <img src="img/Logo_letter_wht.png" alt="">
+        </div>
+        <div class="m-0 p-0 d-none flex-column flex-md-row d-md-flex menu animate__animated animate__backInDown" :class="{'menu-top' : scroll_value >= 300, 'd-flex': open == true }">
+            <img src="img/Logo_letter_wht.png" alt="" class="d-none" :class="{'d-flex' : scroll_value >= 300, 'show-menu': open == true }">
+            <span class="text-center py-3 d-none">MENÚ</span>
+            <a class="text-center py-2" @click="scrollTo('#about')"><i class="far fa-star"></i> Acerca de</a>
+            <a class="text-center py-2" @click="scrollTo('#services')"><i class="fas fa-box-open"></i> Servicios</a>
+            <a class="text-center py-2" @click="scrollTo('#prices')"><i class="fas fa-dollar-sign"></i> Tarifas</a>
+            <a class="text-center py-2" @click="scrollTo('#customers')"><i class="fas fa-people-carry"></i> Clientes</a>
+            <a class="text-center py-2" @click="scrollTo('#contact')"><i class="far fa-envelope"></i> Contacto</a>
+        </div>
+        <div id="about" class="row p-0 m-0 d-flex w-100 flex-md-row flex-column justify-content-center align-items-center section">
+            <div class="col-12 col-md-6 w-100 p-5 pt-md-5 pt-0 d-flex flex-row justify-content-center align-items-center img-section">
+                <img src="img/entrega_2.png" alt="">
+            </div>
+            <div class="col-12 col-md-6 w-100 p-4 d-flex flex-column justify-content-center align-items-center info-section">
+                <h1><i class="far fa-star"></i></h1>
+                <h2 class="my-4 mt-3 text-center">ACERCA DE NOSOTROS</h2>
+                <span class="my-3 mb-5 text-center">
+                    Delivery Santiago surge ante la necesidad de mejorar los servicios de encomiendas, con el objetivo de optimizar tiempos de entrega, 
+                    brindando un servicio rápido, seguro y adaptado a las necesidades de cada usuario. Sabemos lo importante que es el tiempo para nuestros clientes, 
+                    por lo que nuestro servicio está orientado a la entrega de encomiendas en un corto periodo de tiempo y a bajo costo.<br><br>
+                    
+                    Nuestra <b>Misión</b> es proporcionar un servicio eficiente y de calidad, preocupados de cumplir con las expectativas de cada cliente. Delivery Santiago
+                    está comprometido con su labor y se esfuerza cada día por entregar un servicio de excelencia.
+                </span>
+            </div>
+        </div>
+        <div id="services" class="row p-0 m-0 d-flex w-100 flex-md-row flex-column justify-content-center align-items-center section">
+            <div class="col-12 w-100 p-4 d-flex flex-column justify-content-center align-items-center info-section">
+                <h1 class="mt-5"><i class="fas fa-box-open"></i></h1>
+                <h2 class="my-4 mt-3 text-center">SERVICIOS</h2>
+            </div>
+            <div class="col-12 w-100 p-4 d-flex flex-column flex-md-row justify-content-center align-items-stretch">
+                <div class="my-5 my-md-0 w-100 col-12 col-md-4 d-flex flex-column justify-content-start align-items-center service-item">
+                    <i class="far fa-clock mb-3"></i>
+                    <h2 class="text-center">Distribución</h2>
+                    <span class="py-3 px-5 text-center">Retiramos y despachamos encomiendas dentro de la Región Metropolitana en un plazo de 24 a 48 horas. De Lunes a Sábado entre las 09:00 AM – 19:00 PM.</span>
+                </div>
+                <div class="my-5 my-md-0 w-100 col-12 col-md-4 d-flex flex-column justify-content-start align-items-center service-item">
+                    <i class="fas fa-shipping-fast mb-3"></i>
+                    <h2 class="text-center">Rápido y Seguro</h2>
+                    <span class="py-3 px-5 text-center">Gestión ágil y segura. Asignamos a cada móvil una zona determinada, a fin de realizar tus entregas en el menor tiempo posible con todas las medidas de seguridad.</span>
+                </div>
+                <div class="my-5 my-md-0 w-100 col-12 col-md-4 d-flex flex-column justify-content-start align-items-center service-item">
+                    <i class="fas fa-boxes mb-3"></i>
+                    <h2 class="text-center">Agencias</h2>
+                    <span class="py-3 px-5 text-center">Llevamos tus encomiendas a sucursales de Starken, queremos priorizar la salud y bienestar de nuestros clientes, deja atrás largas esperas, Delivery Santiago lo hace por ti.</span>
+                </div>
+            </div>
+        </div>
+        <div id="prices" class="row p-0 m-0 d-flex w-100 flex-md-row flex-column justify-content-center align-items-center section">
+            <div class="col-12 w-100 p-4 d-flex flex-column justify-content-center align-items-center info-section">
+                <h1 class="mt-5" ><i class="fas fa-dollar-sign"></i></h1>
+                <h2 class="my-4 mt-3 text-center">TARIFAS</h2>
+                <span class="my-1 text-center">
+                    Revisa a continuación los valores de nuestro servicio.
+                </span>
+                <img class="mt-5" style="width: 15%;" src="img/mapa.png" alt="">
+            </div>
+            <div class="col-10 w-100 p-0 p-md-4 d-flex flex-column justify-content-center align-items-center info-section">
+                <div class="accordion w-100" id="accordionMain">
+                    <div v-for="(zona_item,index) in tarifas" :key="index" :id="'heading'+index" class="content-zone w-100 col-12 p-0 mb-4" >
+                        <button class="w-100 p-0 d-flex flex-md-row flex-column justify-content-between align-items-stretch" data-toggle="collapse" :data-target="'#collapse'+index" aria-expanded="true" :aria-controls="'collapse'+index" style="cursor: pointer; border-radius:50px">
+                            <div class="zone col-md-4 col-12 p-0 m-0 d-flex flex-column justify-content-center align-items-center">
+                                <span v-if="index == 5" class="pt-3">Servicio</span>
+                                <span v-else class="pt-3">Zona</span>
+                                <h3 class="pb-3 m-0 d-flex flex-row justify-content-center align-items-center">{{zona_item.descripcion}}</h3> 
+                            </div>
+                            <div class="price col-md-4 col-12 p-0 m-0  d-flex flex-column justify-content-center align-items-center" >
+                                <span v-if="index == 5"class="pt-3">Según Condiciones</span>
+                                <span v-else class="pt-3">Tarifa Fija</span>
+                                <h1 class="pb-3 m-0" style="text-transform: uppercase;">{{zona_item.tarifa}}</h1>
+                            </div>
+                            <span v-if="index != 5" class="col-md-4 col-12 p-0 m-0 d-flex flex-md-row flex-column justify-content-center align-items-center">Ver Comunas <i class="fas fa-chevron-circle-down pl-md-4"></i></span>
+                            <span v-else class="col-md-4 col-12 p-0 m-0 d-flex flex-md-row flex-column justify-content-center align-items-center"> Ver Tarifas<i class="fas fa-chevron-circle-down pl-md-4"></i></span>
+                        </button>
+                        <div :id="'collapse'+index" class="collapse" :aria-labelledby="'heading'+index" data-parent="#accordionMain">
+                            <div class="col-12 w-100 p-0 d-flex flex-md-row flex-column justify-content-center align-items-center">
+                                <div class="col-12 position-relative col-md-6 w-100 p-4 d-flex flex-column justify-content-center align-items-center">
+                                    <img style="width:50%" class="" :src="zona_item.img" alt="">
+                                </div>
+                                <div class="detail-zone col-12 col-md-6 w-100 p-4 d-flex flex-column justify-content-center align-items-center">
+                                    <span v-if="index == 5"><h4>Retiro $2.000 + </h4></span>
+                                    <span class="mt-2 text-center text-md-left w-100" v-for="comuna in zona_item.comunas"><i v-if="index !=5"class="fas fa-map-marker-alt"></i>  {{comuna}}</span>
+                                    <span v-if="!zona_item.valor_fijo" class="mt-4 text-center text-md-left w-100" style="font-size: 14px;">
+                                        <i v-for="esp in zona_item.especial">{{esp}}<br></i>
+                                    </span>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="customers" class="row p-0 m-0 d-flex w-100 flex-md-row flex-column justify-content-center align-items-center section">
+        <!-- <div id="customers" class="row p-0 m-md-0 mb-md-0 mb-5 d-flex w-100 flex-md-row flex-column justify-content-center align-items-center section"> -->
+            <div class="col-12 w-100 my-4 d-flex flex-column justify-content-center align-items-center info-section">
+                <h1 class="mt-4"><i class="fas fa-people-carry"></i></h1>
+                <h2 class="my-4 mt-3 text-center">CLIENTES</h2>
+                <span class="my-1 text-center">
+                    Agradecemos la confianza depositada en nuestro equipo de trabajo.
+                </span>
+            </div>
+            <b-carousel id="carousel-no-animation"style="text-shadow: 0px 0px 2px #000" fade indicators  :controls="false" :interval="2000" class="d-flex d-md-none" :no-hover-pause="true">
+                <b-carousel-slide caption="" img-src="img/clientes/group_1_rsp.png"></b-carousel-slide>
+                <b-carousel-slide caption="" img-src="img/clientes/group_2_rsp.png"></b-carousel-slide>
+                <b-carousel-slide caption="" img-src="img/clientes/group_3_rsp.png"></b-carousel-slide>
+            </b-carousel>
+            <b-carousel id="carousel-no-animation"style="text-shadow: 0px 0px 2px #000" fade indicators  :controls="false" :interval="2000" class="d-none d-md-flex">
+                <b-carousel-slide caption="" img-src="img/clientes/group_1.png"></b-carousel-slide>
+                <b-carousel-slide caption="" img-src="img/clientes/group_2.png"></b-carousel-slide>
+                <b-carousel-slide caption="" img-src="img/clientes/group_3.png"></b-carousel-slide>
+                <b-carousel-slide caption="" img-src="img/clientes/group_4.png"></b-carousel-slide>
+            </b-carousel>
+        </div>
+        <div id="contact" class="row p-0 m-0 pt-md-2 d-flex w-100 flex-md-row flex-column-reverse justify-content-center align-items-center section contact">
+            <div class="col-12 col-md-6 w-100 pt-5 d-flex flex-column justify-content-center align-items-center img-section img-contact">
+                    <span class="py-4 px-5 text-center">
+                        Solicita nuestros servicios a través del siguiente formulario o mediante las distintas redes sociales 
+                        <br><br>
+                        ¡Te estamos esperando!
+                        <br><br>
+                    </span>
+                <img src="img/Logo_white.png" alt="">
+                <div class=" w-100 py-5 d-flex flex-row flex-wrap justify-content-around justify-content-md-center info-contact">
+                    <a href="https://www.instagram.com/delivery.santiago_/"  target="_blank" class="pr-0 pr-md-4 d-flex flex-row justify-content-flex-start align-items-center mt-2 insta" href=""><i class="pr-2 fab fa-instagram"></i> <span class="pl-1 d-none d-md-flex">Instagram</span></a>
+                    <a href="https://wa.me/56935164028?text=Hola *Delivery%20Santiago*,%20me%20interesa%20en%20realizar%20una%20encomienda%20por%20favor."  target="_blank" class="pr-0 pr-md-4 d-flex flex-row justify-content-flex-start align-items-center mt-2 whats" href=""><i class="pr-2 fab fa-whatsapp"></i> <span class="pl-1 d-none d-md-flex">WhatsApp Empresa</span></a>
+                    <!-- <a href="https://api.whatsapp.com/send?phone=56966040750?text=Hola%20Mauricio%20COmo%20estas?"  target="_blank" class="pr-0 pr-md-4 d-flex flex-row justify-content-flex-start align-items-center mt-2 whats" href=""><i class="pr-2 fab fa-whatsapp"></i> <span class="pl-1 d-none d-md-flex">WhatsApp</span></a> -->
+                    <a href="https://www.facebook.com/Deliverysantiago_-111051483952543"  target="_blank" class="pr-0 pr-md-4 d-flex flex-row justify-content-flex-start align-items-center mt-2 faceb" href=""><i class="pr-2 fab fa-facebook"></i> <span class="pl-1 d-none d-md-flex">Facebook</span></a>
+                    <a href="mailto:contacto@delivery-santiago.cl" target="_blank" class="pr-0 pr-md-4 d-flex flex-row justify-content-flex-start align-items-center mt-2 envelop" href=""><i class="pr-2 far fa-envelope"></i> <span class="pl-1 d-none d-md-flex">Correo</span></a>
+                </div>
+                <a class="pb-4 w-100 text-center" style="color:#FFF; text-decoration: none;" href="https://wa.me/56935164028?text=Hola *Delivery%20Santiago*,%20me%20interesa%20trabajar%20con%20ustedes.">Trabaja con Nosotros <i class="fas fa-car"></i></a>
+
+            </div>
+            <div class="col-12 col-md-6 w-100 my-4 p-4 d-flex flex-column justify-content-center align-items-center info-section">
+                <h1><i class="fas fa-mail-bulk"></i></h1>
+                <h2 class="my-4 mt-3 text-center">CONTACTO</h2>
+                <form @submit="sendEmail($event)" class="w-100 d-flex flex-column justify-content-center align-items-center">
+                    <input name="txtAsunto" class="my-2 py-2 px-3" type="text" placeholder="Asunto" required v-model="asunto">
+                    <input name="txtNombre" class="my-2 py-2 px-3" type="text" placeholder="Nombre" required v-model="nombre">
+                    <select class="my-2 py-2 px-3" name="txtComuna" v-model="comuna">
+                        <option value="" disabled selected>Comuna</option>
+                        <option v-for="item in comunas" :value="item">{{item}}</option>
+                    </select>
+                    <input name="txtPhone" class="my-2 py-2 px-3" type="phone" pattern="[0-9]{8}" maxlength="8" title="Solo Números. Telefono de 8 Digitos" placeholder="Teléfono (8 Digitos)" required v-model="telefono">
+                    <input name="txtEmail" class="my-2 py-2 px-3" type="email" placeholder="Email" required v-model="email">
+                    <textarea class="my-2 py-4 px-3" name="txtMensaje" id="" cols="30" rows="6" placeholder="Mensaje" v-model="mensaje" required></textarea>
+                    <input class="w-50 mt-4 py-2" type="submit" value="ENVIAR">
+                </form>
+            </div>
+        </div>
+        <div class="col-12 w-100 p-3 d-flex flex-row justify-content-center align-items-center footer">
+            <span class="text-center">©Todos los derechos reservados a <b>Delivery Santiago</b>, Chile 2020-2021.</span>
+        </div>
+        <b-modal :no-close-on-backdrop="true" :no-close-on-esc="true" id="modal-send" centered size="lg" 
+            :header-bg-variant="header_modal"
+            header-text-variant="light"
+            body-bg-variant="light"
+            body-text-variant="dark"
+            >
+            <template v-slot:modal-header="{ close }">
+                <span v-if="send_status != false" class="w-100 d-flex flex-column justify-content-center align-items-center"><i style="font-size: 4em;" class="mb-3 far fa-check-circle"></i> Enviado</span>
+                <span v-else class="w-100 d-flex flex-column justify-content-center align-items-center"><i style="font-size: 4em;" class="mb-3 far fa-times-circle"></i> Error</span>
+            </template>
+            <template v-slot:default="{ hide }">
+                <span v-if="send_status != false" class="w-100 p-2 d-flex flex-column justify-content-center align-items-center text-center">Estimado/a <strong>{{nombre}}</strong> <br>Tu consulta ha sido enviada correctamente!.</span>
+                <span v-else class="w-100 p-2 d-flex flex-column justify-content-center align-items-center text-center">Estimado/a <strong>{{nombre}}</strong> <br>Lamentamos lo sucedido pero no ha ocurrido un problema al enviar tu consulta. Por favor intente mas tarde.</span>
+            </template>
+            <template v-slot:modal-footer="{ ok, cancel, hide }">
+                <b-button size="sm" :variant="'outline-'+header_modal" @click="ok(clearInputs())">Listo</b-button>
+            </template>    
+        </b-modal>
+    </div>
+
+    <script>
+        Vue.http.headers.common['Access-Control-Allow-Origin'] = '*'
+        Vue.http.headers.common['Access-Control-Request-Method'] = '*';
+        var App = new Vue({
+            el: "#mainApp",
+            data:{
+                send_status:true,
+                header_modal:"danger",
+                scroll_value: 0,
+                asunto:"",
+                nombre:"",
+                email:"",
+                telefono:"",
+                comuna:"",
+                mensaje:"",
+                open: false,
+                height_app:0,
+                width_app:0,
+                comunas: [
+                    "Alhué", 
+                    "Buin", 
+                    "Calera de Tango", 
+                    "Curacaví", 
+                    "Cerrillos", 
+                    "Cerro Navia", 
+                    "Colina", 
+                    "Conchalí", 
+                    "El Bosque", 
+                    "El Monte", 
+                    "Estación Central", 
+                    "Huechuraba", 
+                    "Isla de Maipo", 
+                    "Independencia", 
+                    "Lampa", 
+                    "La Cisterna", 
+                    "La Florida", 
+                    "La Granja", 
+                    "La Pintana", 
+                    "La Reina", 
+                    "Las Condes", 
+                    "Lo Barnechea", 
+                    "Lo Espejo", 
+                    "Lo Prado", 
+                    "Macul", 
+                    "Maipú", 
+                    "María Pinto", 
+                    "Melipilla", 
+                    "Ñuñoa", 
+                    "Padre Hurtado", 
+                    "Paine", 
+                    "Pedro Aguirre Cerda", 
+                    "Peñaflor",
+                    "Peñalolén", 
+                    "Pirque", 
+                    "Providencia", 
+                    "Pudahuel", 
+                    "Puente Alto", 
+                    "Quilicura", 
+                    "Quinta Normal", 
+                    "Recoleta", 
+                    "Renca", 
+                    "San Bernardo", 
+                    "San Joaquín", 
+                    "San José de Maipo", 
+                    "San Miguel", 
+                    "San Ramón", 
+                    "San Pedro", 
+                    "Talagante", 
+                    "Tiltil", 
+                    "Vitacura", 
+                ],
+                tarifas:[
+                    {   descripcion:"Norte",
+                        tarifa: "$3.000",
+                        valor_fijo:false,
+                        comunas:["Conchalí","Huechuraba","Independencia","Quilicura","Quilicura(Valle Grande)*","Renca","Recoleta",],
+                        img:"img/zona_norte.png",
+                        especial:["(*) Valle Grande $5.000.-"]
+                    },
+                    {   descripcion:"Oriente",
+                        tarifa: "$3.500",
+                        valor_fijo:false,
+                        comunas:["Las Condes","Vitacura","Lo Barnechea*","La Reina","Peñalolen"],
+                        img:"img/zona_oriente.png",
+                        especial:["(*) Lo Barnechea $4.000."]
+                    },
+                    {   descripcion:"Poniente",
+                        tarifa: "$3.000",
+                        valor_fijo:false,
+                        comunas:["Estación Central","Lo Prado","Quinta Normal","Cerro Navia","Pudahuel","Pudahuel - C. de Los Valles - Noviciado - Lomas de lo Aguirre*","Cerrillos","PAC","Lo Espejo","Maipú","Padre Hurtado*"],
+                        img:"img/zona_poniente.png",
+                        especial:["(*) C. de Los Valles - Noviciado - Lomas de lo Aguirre $5.000.","(*) Padre Hurtado $5.000."]
+                    },
+                    {   descripcion:"Sur",
+                        tarifa: "$3.000",
+                        valor_fijo:false,
+                        comunas:["La Cisterna","San Ramón","La Granja","La Florida","El Bosque","La Pintana","San Bernardo","San Bernardo Nos*","Puente Alto","Puente Alto - Las Vizcachas*"],
+                        img:"img/zona_sur.png",
+                        especial:["(*) San Bernardo Nos $5.000.","(*) Puente Alto - Las Vizcachas $5.000."]
+                    },
+                    {   descripcion:"Centro",
+                        tarifa: "$3.000",
+                        valor_fijo:true,
+                        comunas:["Santiago","San Miguel","San Joaquin","Macul","Ñuñoa","Providencia"],
+                        img:"img/zona_centro.png",
+                        especial:[]
+                    },
+                    {   descripcion:"Starken",
+                        tarifa: "-",
+                        valor_fijo:true,
+                        comunas:["01 Encomienda: $1.500","02 Encomiendas: $1.000 c/u","03 Encomiendas o más: $700 c/u","Máximo 5 Kg por encomienda"],
+                        img:"img/starken.png",
+                        especial:[]
+                    },
+                ],
+           },
+           mounted() {
+                let self = this;
+                $(document).ready(function () {
+                    $(window).resize(function () {
+                        self.width_app = window.innerWidth;
+                        self.height_app = window.innerHeight;
+                    });
+                });
+            },
+            created() {
+                 window.addEventListener('scroll', this.handleScroll);
+            },
+            watch: {
+                scroll_value:function(val){
+                    if(this.width_app >768 ){
+                        if(val <= 720){
+                            this.open = false;
+                        }
+                    }
+                }
+            },
+            methods:{
+                sendEmail(e){
+                    e.preventDefault();
+                    let self = this;
+                    this.$http.post('send.php',{
+                        asunto: this.asunto,
+                        nombre: this.nombre,
+                        email: this.email,
+                        telefono: "+569"+this.telefono,
+                        comuna: this.comuna,
+                        mensaje: this.mensaje,
+                        }).then(function(response){
+                            if(response.status == 200){
+                                this.sendCopy(e);
+                            }else {
+                                this.send_status= false;
+                                this.header_modal="danger";
+                                this.$root.$emit('bv::show::modal', 'modal-send', '#modal-send');
+                            }
+                        }).catch(function (error){
+                            this.send_status= false;
+                            this.header_modal="danger";
+                            this.$root.$emit('bv::show::modal', 'modal-send', '#modal-send');
+                        });
+                },
+                sendCopy(e){
+                    e.preventDefault();
+                    this.$http.post('copy_send.php',{
+                        nombre: this.nombre,
+                        email: this.email,
+                        }).then(function(response){
+                            if(response.status == 200){
+                                this.send_status= true;
+                                this.header_modal="success";
+                                this.$root.$emit('bv::show::modal', 'modal-send', '#modal-send');
+                            }else {
+                                this.send_status= false;
+                                this.header_modal="danger";
+                                this.$root.$emit('bv::show::modal', 'modal-send', '#modal-send');
+                            }
+                        }).catch(function (error){
+                            this.send_status= false;
+                            this.header_modal="danger";
+                            this.$root.$emit('bv::show::modal', 'modal-send', '#modal-send');
+                        });
+                },
+                clearInputs(){
+                    this.asunto = "";
+                    this.nombre = "";
+                    this.email = "";
+                    this.telefono = "";
+                    this.comuna = "";
+                    this.mensaje = "";
+                    location.reload();
+                },
+                openMenu(){
+                    this.open = !this.open;
+                },
+                handleScroll(event){                
+                    this.scroll_value = window.scrollY;
+                },
+                scrollTo(div){
+                    this.openMenu()
+                    $('html, body').animate({
+                        scrollTop: $(div).offset().top
+                    }, 1000);
+                }
+            }
+        })
+    </script>
+
+
+
+    
+</body>
+</html>
